@@ -1,5 +1,6 @@
 import csv
 import time
+import os
 # 暗网地址：http://lei6ezsexd4iq2tm.onion
 # crm.txt为华住官网注册资料，包括姓名，手机号，游行，身份证号，登陆密码等信息。 全部资料共53G，大约1.23亿条记录
 # cusinfo为酒店入住时登记的身份信息，主要为身份证信息，包括姓名，身份证号，家庭住址，生日，内部id号。全部资料共22.3G，大约1.3亿人身份证信息
@@ -9,19 +10,20 @@ import time
 print('初始化数据……')
 t0 = time.clock()
 data = []
-with open('crm.csv', encoding='UTF-8') as csvfile:
+with open('src\crm.csv', encoding='UTF-8') as csvfile:
     reader = csv.reader(csvfile)
     rows = [row for row in reader]
     data += rows
-with open('cusinfo.csv', encoding='UTF-8') as csvfile:
+with open('src\cusinfo.csv', encoding='UTF-8') as csvfile:
     reader = csv.reader(csvfile)
     rows = [row for row in reader]
     data += rows
-with open('history.csv', encoding='UTF-8') as csvfile:
+with open('src\history.csv', encoding='UTF-8') as csvfile:
     reader = csv.reader(csvfile)
     rows = [row for row in reader]
     data += rows
-print('完成，用时' + str(time.clock() - t0) + 's，' + str(len(data)) + '条信息')
+temp = os.system('cls')
+print('初始化完成，用时' + str(time.clock() - t0) + 's，总计' + str(len(data)) + '条信息')
 
 value = ''
 while value != 'quit':
@@ -30,7 +32,7 @@ while value != 'quit':
     if value != 'quit':
         for person in data:
             person = str(person)
-            if value.lower() in person.lower():    
+            if value.lower() in person.lower():
                 print(person)
                 flag = 1
     else:
